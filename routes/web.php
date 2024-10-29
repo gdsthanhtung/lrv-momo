@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PaymentController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/payment', [PaymentController::class, 'showPaymentForm']);
 Route::get('/payment-complete', [PaymentController::class, 'paymentComplete']);
 Route::post('/payment', [PaymentController::class, 'checkout']);
+
+
+Route::get('/payment-vnpay', [PaymentController::class, 'showPaymentFormVNPay']);
+Route::get('/payment-vnpay-complete', [PaymentController::class, 'paymentCompleteVNPay']);
+Route::post('/payment-vnpay', [PaymentController::class, 'checkoutVNPay']);
+
