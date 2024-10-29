@@ -126,6 +126,24 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'momo_payment' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/momo_payment.log'),
+            'level' => 'info',
+        ],
+
+        'vnpay_payment' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/vnpay_payment.log'),
+            'level' => 'info',
+        ],
+
+        'zalopay_payment' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/zalopay_payment.log'),
+            'level' => 'info',
+        ],
     ],
 
 ];

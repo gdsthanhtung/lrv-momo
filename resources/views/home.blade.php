@@ -2,22 +2,40 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+    <div class="row justify-content-center mt-3">
+        <div class="card-body">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
                 </div>
-            </div>
+            @endif
+        </div>
+
+        <div class="col-md-4">
+            @include('momo')
+        </div>
+        <div class="col-md-4">
+            @include('vnpay')
+        </div>
+        <div class="col-md-4">
+            @include('zalopay')
+
         </div>
     </div>
 </div>
 @endsection
+
+<style>
+    #btn-momo {
+        background-color: #d82d8b;
+        border-color: #d82d8b;
+    }
+    #btn-vnpay {
+        background-color: #005baa;
+        border-color: #005baa;
+    }
+    #btn-zalopay {
+        background-color: #00CF6A;
+        border-color: #00CF6A;
+    }
+</style>

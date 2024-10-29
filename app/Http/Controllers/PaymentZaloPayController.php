@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PaymentController extends Controller
+class PaymentZaloPayController extends Controller
 {
     public function showPaymentForm()
     {

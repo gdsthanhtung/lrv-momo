@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PaymentMomoController;
+use App\Http\Controllers\PaymentVNPayController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,12 +24,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/payment', [PaymentController::class, 'showPaymentForm']);
-Route::get('/payment-complete', [PaymentController::class, 'paymentComplete']);
-Route::post('/payment', [PaymentController::class, 'checkout']);
+Route::post('/payment-momo',            [PaymentMomoController::class, 'checkout']); //Execute request to MoMo to create payment
+Route::get('/payment-callback-momo',    [PaymentMomoController::class, 'callback']); //Momo call this url to send payment result
+Route::get('/payment-check-status-momo',    [PaymentMomoController::class, 'checkStatus']); //Merchant (us) call this url to check payment status
 
+Route::post('/payment-vnpay',           [PaymentVNPayController::class, 'checkout']);
+Route::get('/payment-complete-vnpay',   [PaymentVNPayController::class, 'paymentComplete']);
 
-Route::get('/payment-vnpay', [PaymentController::class, 'showPaymentFormVNPay']);
-Route::get('/payment-vnpay-complete', [PaymentController::class, 'paymentCompleteVNPay']);
-Route::post('/payment-vnpay', [PaymentController::class, 'checkoutVNPay']);
+Route::post('/payment-zalopay',         [PaymentVNPayController::class, 'checkout']);
+Route::get('/payment-complete-zalopay', [PaymentVNPayController::class, 'paymentComplete']);
 
