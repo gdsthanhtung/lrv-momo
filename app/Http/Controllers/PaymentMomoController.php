@@ -14,16 +14,11 @@ class PaymentMomoController extends Controller
     protected $endpointCheckout     = 'https://test-payment.momo.vn/v2/gateway/api/create';
     protected $endpointCheckStatus  = 'https://test-payment.momo.vn/v2/gateway/api/query';
 
-    protected $redirectUrl          = "https://f9b5-14-186-211-79.ngrok-free.app/payment-complete-momo";
+    protected $redirectUrl          = "https://f9b5-14-186-211-79.ngrok-free.app/payment-callback-momo";
     protected $ipnUrl               = "https://f9b5-14-186-211-79.ngrok-free.app/payment-callback-momo";
 
     protected $partnerCode          = 'MOMO';
     protected $lang                 = 'vi';
-
-    public function showPaymentForm()
-    {
-        return view('payment');
-    }
 
     public function checkout(Request $request)
     {
@@ -84,7 +79,7 @@ class PaymentMomoController extends Controller
         $result     = $this->execPostRequest($endpoint, json_encode($data));
         $jsonResult = json_decode($result, true);
 
-        if (isset($jsonResult['payUrl']) && $jsonResult['payUrl'] != null){
+        if (isset($jsonResult['payUrl']) && $jsonResult['payUrl']){
             Log::channel('momo_payment')->info('Create transaction | Info: ' . json_encode($result));
             return redirect()->to($jsonResult['payUrl']);
         }else{

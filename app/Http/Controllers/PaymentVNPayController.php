@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class PaymentVNPayController extends Controller
 {
-    public function showPaymentForm()
-    {
-        return view('payment');
-    }
-
     public function checkout(Request $request)
     {
         $data = $request->all();
